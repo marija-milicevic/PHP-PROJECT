@@ -1,0 +1,30 @@
+#wrapper {
+	background: #fff;
+	width: 740px;
+	margin: 0px auto 10px;
+	padding: 0;
+	position: relative;
+	font: 13px Trebuchet MS;
+}
+#header {
+	background-image:url("../images/blog_header.gif");
+	background-repeat:no-repeat;
+	width: 740px;
+	height: 195px;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+.login_wrrap{
+	float:right;
+	padding-top: 165px;
+	padding-right: 5px;
+}
+a {
+	color:#696969;
+	text-decoration: none;
+	font-weight: bold;
+}
+a:hover {
+	color:#000;
+}
