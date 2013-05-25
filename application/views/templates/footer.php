@@ -1,4 +1,5 @@
-		<footer>
+
+		<footer  class="clear">
 			
 		</footer>
 	</div>  <!-- end wraper -->
