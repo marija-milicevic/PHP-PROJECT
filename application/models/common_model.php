@@ -59,6 +59,11 @@ class Common_model extends CI_Model
 		return $query->result();
 	}
 
+	protected function setDefault($defaults, $options)
+	{
+		return array_merge($defaults, $options);
+	}
+
 	
 }
 ?>
