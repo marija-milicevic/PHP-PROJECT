@@ -15,25 +15,18 @@ class Post extends CI_Controller
 		/// Display the latest post from the database when page is accessed
 		///
 		
-		$latestPostDB = $this->post_model->getPost(array(
+		$allPostsDB = $this->post_model->getPost(array(
 			'sortBy' => 'created',
-			'sortDirection' => 'desc',
-			'limit' => '1'));
+			'sortDirection' => 'desc'));
 		
-		$latestPost = NULL;
 		
-		if (sizeof($latestPostDB) > 0)
-		{
-			$latestPost = $latestPostDB[0];
-		}
-		
-		$this->loadPost($latestPost);
+		$this->loadPosts($allPostsDB);
 	}
 	
 	public function display($postId)
 	{
 		$post = $this->post_model->getPost(array('id' => $postId));
-		$this->loadPost($post);
+		//$this->loadPost($post);
 	}
 	
 	
@@ -42,24 +35,29 @@ class Post extends CI_Controller
 		
 	}
 	
-	private function loadPost($postRow)
+	private function loadPosts($posts)
 	{
 		$main_content_data = array();
-		$main_content_data['post'] = array();
+		$main_content_data['posts'] = array();
 
 		///
-		/// Get data for the post
+		/// Get data for the posts
 		///
+		if ($posts !== FALSE)
+		{
 		
-		$main_content_data['post'] = $this->getPostData($postRow);
+			for ($i = 0; $i < sizeof($posts); $i++)
+			{
+				$main_content_data['posts'][$i] = $this->getPostData($posts[$i]);
+			}
 		
-		
+		}
 		
 		///
 		/// Prepare and load the view
 		///
 		
-		$data['main_content'] = "post";
+		$data['main_content'] = "postList";
 		$main_content_data['title'] = "Post";
 		$data['data'] = $main_content_data;
 		
@@ -77,6 +75,7 @@ class Post extends CI_Controller
 		
 		$post['id'] = $postRow->id;
 		$post['title'] = $postRow->title;
+		$post['lead'] = $postRow->lead;
 		$post['body'] = $postRow->body;
 		$post['author'] = $postRow->author;
 		$post['created'] = $postRow->created;
