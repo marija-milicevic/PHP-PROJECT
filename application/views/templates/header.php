@@ -11,7 +11,19 @@
 <body>
 	<div id="wrapper">
 		<div id="header">
-			<div class="login_wrrap"><a href="<?php echo base_url(); ?>index.php/login">Login</a></div>
+			<div class="login_wrrap">
+				<?php
+				$is_logeed = $this->session->userdata('logeed');
+
+				if(!isset($is_logeed) || $is_logeed != true){ ?>
+					<a href="<?php echo base_url(); ?>index.php/login">Login</a>
+				<?php } else {?>
+					<a href="<?php echo base_url(); ?>index.php/admin/post/logout">Logout</a>
+				<?php }
+				?>
+				<br/>
+				<?php echo getCapability() ?>
+			</div>
 		</div>
 
 

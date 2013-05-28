@@ -1,13 +1,13 @@
 #wrapper {
 	background: #fff;
-	width: 740px;
+	width: 940px; /*740*/
 	margin: 0px auto 10px;
 	padding: 0;
 	position: relative;
 	font: 13px Trebuchet MS;
 }
 #main_wrapper{
-	width: 740px;
+	width: 940px;
 }
 #menu_wrrap{
 	float:left;
@@ -17,17 +17,17 @@
 }
 #content_wrrap{
 	padding-left:20px;
-	padding-top:10px;
+	padding-top:7px;
 	margin-left:10px;
 	float:left;
-	width:65%;
+	width:66%;
 	min-height:200px;
 }
 
 #header {
 	background-image:url("../images/blog_header.gif");
 	background-repeat:no-repeat;
-	width: 740px;
+	width: 940px;
 	height: 195px;
 	margin: 0;
 	padding: 0;
@@ -39,8 +39,8 @@
 }
 .login_wrrap{
 	float:right;
-	padding-top: 165px;
-	padding-right: 5px;
+	padding-top: 5px;
+	padding-right: 10px;
 }
 a {
 	color:#696969;
@@ -59,4 +59,20 @@ a:active {
 }
 ul {
 	list-style-type:none;
+}
+.title_label{
+	background-image:url("../images/ui-bg_highlight-hard_15_c01c1b_1x100.png");
+	border: 1px solid #D7DBDA;
+	color: #ffffff;
+	font-weight: bold;
+	height:25px;
+	position:relative;
+	width:600px;
+	border-radius: 6px 6px 6px 6px;
+	
+}
+.title_label span {
+   position: absolute;
+   top: 4px;
+   left: 8px;
 }

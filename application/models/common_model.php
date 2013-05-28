@@ -22,7 +22,7 @@ class Common_model extends CI_Model
 			}
     	}
 		
-		// setting SQL limit and offset clauses
+		// setting SQL limit and offset clauses 
     	if(isset($options['limit']) && isset($options['offset']))
     	{
     		$this->db->limit($options['limit'], $options['offset']);
@@ -59,6 +59,11 @@ class Common_model extends CI_Model
 		return $query->result();
 	}
 
+	protected function insert($table, &$values)
+	{
+		$this->db->insert($table, $values);
+	}
+	
 	protected function setDefault($defaults, $options)
 	{
 		return array_merge($defaults, $options);

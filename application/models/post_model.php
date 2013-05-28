@@ -7,24 +7,47 @@ class Post_model extends Common_model
   		parent::__construct();
   	}
 	
-	public function insertPost()
-	{
-		
-	}
 	
   	public function getPost($options = array())
   	{
     	$options = $this->setDefault(array('sortDirection' => 'asc'), $options);
 		
-    	$columns = array('id', 'title', 'lead', 'body','author', 'created','status'); // u config naziv polja
+    	$columns = array('id', 'title', 'lead', 'body','author', 'created','status'); 
     	$uniqueFlags = array('id');
     	
     	return $this->get('post', $columns, $options, $uniqueFlags);
 	}
+	
+	public function insertPost($title, $lead, $body, $author)
+  	{
+    	$values = array('title' => $title,
+			'lead' => $lead,
+			'body' => $body,
+			'author' => $author);
+		
+		$this->insert('post', $values);
+	}
+	
+	public function updatePost($title, $lead, $body, $author, $status, $id)
+  	{
+    	$values = array('title' => $title,
+			'lead' => $lead,
+			'body' => $body,
+			'author' => $author,
+			'status' => $status);
+			
+		$this->db->where('id', $id);
+		$this->db->update('post', $values); 
 
-	public function getPostViewsWithIDs($ids, $options = array())
-	{
-		return $this->getFromValues('post', 'id', $ids, $options);
+	}
+	
+	public function deletePost($id)
+  	{
+				
+		$this->db->where('id', $id);
+		$this->db->delete('post'); 
+		
+
 	}
 }
 ?>
