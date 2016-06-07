@@ -1,7 +1,7 @@
 <?php
 class Login extends CI_Controller
 {
-	function index($message = ''){
+	function index($message = '') {
 		
 		$data['main_content'] = "login";
 		$this->main_content_data['title'] = "Login";
@@ -11,7 +11,7 @@ class Login extends CI_Controller
 		$this->load->view('templates/template',$data);
 	}
 	
-	function do_login(){
+	function do_login() {
 		
 		$this->load->model('user_model');
 		

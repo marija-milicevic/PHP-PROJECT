@@ -1,11 +1,9 @@
 <?php
 
-class Post extends CI_Controller
-{
+class Post extends CI_Controller {
 	public $main_content_data = array();	
 		
-	public function __construct()
-	{
+	public function __construct() {
 		parent::__construct();
 		
 		$this->load->model('post_model');
@@ -134,23 +132,17 @@ class Post extends CI_Controller
 		$this->load->view('templates/template',$data);
 	}
 	
-	private function getPostData($postRow)
-	{
-		if ($postRow == NULL)
-		{
-			return NULL;
-		}
-		
-		$post = array();
-		
-		$post['id'] = $postRow->id;
-		$post['title'] = $postRow->title;
-		$post['lead'] = $postRow->lead;
-		$post['body'] = $postRow->body;
-		$post['author'] = $postRow->author;
-		$post['created'] = $postRow->created;
-	
-		return $post;
+	private function getPostData($postRow) {
+		return isset($postRow)
+            ? array(
+                'id' => $postRow->id,
+                'title' => $postRow->title,
+                'lead' => $postRow->lead,
+                'body' => $postRow->body,
+                'author' => $postRow->author,
+                'created' => $postRow->created
+                )
+            : null;
 	}
 
 	

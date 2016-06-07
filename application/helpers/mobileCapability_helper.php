@@ -4,7 +4,7 @@ require_once(APPPATH . 'libraries/Wurfl/Client/Client.php');
 function getCapability() {
 // Include the WURFL Cloud Client
 // You'll need to edit this path
-//require_once ('C:\websites\KitmakerBlog\application\libraries\Wurfl\Client\Client.php');
+//require_once ('C:\websites\Blog\application\libraries\Wurfl\Client\Client.php');
 //$xmlData = $this -> load -> file("application/views/default/info.xml", true);
 
  

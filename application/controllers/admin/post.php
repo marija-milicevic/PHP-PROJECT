@@ -1,33 +1,44 @@
 <?php
 session_start();
 
-class Post extends CI_Controller
-{
+class Post extends CI_Controller {
+
 	public $main_content_data = array();	
 		
-	public function __construct()
-	{
+	public function __construct() {
 		parent::__construct();
-		$this->is_logeed();     // check if user is authorized. If it is not redirect to login page
+		$this->is_logeed();
 		
 		$this->load->model('post_model');
 		$this->load->helper('ckeditor');
 		
 		$this->main_content_data['ckeditor'] = array(
- 
-			//ID of the textarea that will be replaced
 			'id' 	=> 	'content',
 			'path'	=>	'public/js/ckeditor',
  
 			'config' => array(
 				'width' 	=> 	"590px",
 				'height' 	=> 	'200px',
-			),
- 
+			)
 		);
 	}
 
-	public function is_logeed(){
+    /**
+     * Display the unpublished posts
+     */
+    public function index() {
+        $allPostsDB = $this->post_model->getPost(array(
+            'sortBy' => 'created',
+            'sortDirection' => 'desc',
+            'status' => 0));
+
+        $this->loadPosts($allPostsDB);
+    }
+
+    /**
+     * Check if user is authorized. If it is not redirect to login page
+     */
+	public function is_logeed() {
 		$is_logeed = $this->session->userdata('logeed');
 
 		if(!isset($is_logeed) || $is_logeed != true){
@@ -35,31 +46,17 @@ class Post extends CI_Controller
 		}
 	}
 	
-	function logout()
-	 {
+	public function logout() {
 	   $this->session->unset_userdata('logeed');
 	   $this->session->unset_userdata('username');
 	   session_destroy();
 	   redirect('/login', 'refresh');
-	 }
-
-	public function index()
-	{
-		///
-		/// Display the unpublished posts from the database when page is accessed
-		///
-		
-		$allPostsDB = $this->post_model->getPost(array(
-			'sortBy' => 'created',
-			'sortDirection' => 'desc',
-			'status' => 0));
-		
-		
-		$this->loadPosts($allPostsDB);
 	}
-	
-	public function display($postId)
-	{
+
+    /** Display post details
+     * @param int $postId
+     */
+	public function display($postId) {
 		$post = $this->post_model->getPost(array('id' => $postId));
 		$this->main_content_data['post'] = $this->getPostData($post);
 		
