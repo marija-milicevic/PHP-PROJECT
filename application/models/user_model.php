@@ -1,15 +1,11 @@
 <?php
-class User_model extends Common_model
-{
-  	public function __construct()
-  	{
+class User_model extends Common_model {
+
+  	public function __construct() {
   		parent::__construct();
   	}
 	
-	
-  	function getUser($options = array())
-  	{
-		
+  	function getUser($options = array()) {
     	$columns = array('id', 'username', 'password');
     	$uniqueFlags = array('id');
     	

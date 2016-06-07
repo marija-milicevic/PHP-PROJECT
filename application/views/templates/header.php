@@ -13,9 +13,9 @@
 		<div id="header">
 			<div class="login_wrrap">
 				<?php
-				$is_logeed = $this->session->userdata('logeed');
+				$is_logged = $this->session->userdata('logged');
 
-				if(!isset($is_logeed) || $is_logeed != true){ ?>
+				if(!isset($is_logged) || $is_logged != true){ ?>
 					<a href="<?php echo base_url(); ?>index.php/login">Login</a>
 				<?php } else {?>
 					<a href="<?php echo base_url(); ?>index.php/admin/post/logout">Logout</a>

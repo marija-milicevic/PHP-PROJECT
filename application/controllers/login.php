@@ -20,19 +20,18 @@ class Login extends CI_Controller
 		
 		$user = $this->user_model->getUser(array(
 			'username' => $username,
-			'password' => $password));
+			'password' => $password)
+        );
 			
-		if($user)
-		{
+		if($user) {
 			$session_data = array(
 				'username' => $this->input->post('username'),
-				'logeed' => true
+				'logged' => true
 			);
 			
 			$this->session->set_userdata($session_data);
 			redirect('/admin/post');
-		}
-		else{
+		} else {
 			$message = "Username or password is wrong!";
 			$this->index($message);
 		}

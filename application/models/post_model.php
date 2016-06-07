@@ -1,15 +1,12 @@
 <?php
 
-class Post_model extends Common_model
-{
-  	public function __construct()
-  	{
+class Post_model extends Common_model {
+
+  	public function __construct() {
   		parent::__construct();
   	}
-	
-	
-  	public function getPost($options = array())
-  	{
+
+  	public function getPost($options = array()) {
     	$options = $this->setDefault(array('sortDirection' => 'asc'), $options);
 		
     	$columns = array('id', 'title', 'lead', 'body','author', 'created','status'); 
@@ -18,8 +15,7 @@ class Post_model extends Common_model
     	return $this->get('post', $columns, $options, $uniqueFlags);
 	}
 	
-	public function insertPost($title, $lead, $body, $author)
-  	{
+	public function insertPost($title, $lead, $body, $author) {
     	$values = array('title' => $title,
 			'lead' => $lead,
 			'body' => $body,
@@ -28,8 +24,7 @@ class Post_model extends Common_model
 		$this->insert('post', $values);
 	}
 	
-	public function updatePost($title, $lead, $body, $author, $status, $id)
-  	{
+	public function updatePost($title, $lead, $body, $author, $status, $id) {
     	$values = array('title' => $title,
 			'lead' => $lead,
 			'body' => $body,
@@ -41,13 +36,9 @@ class Post_model extends Common_model
 
 	}
 	
-	public function deletePost($id)
-  	{
-				
+	public function deletePost($id) {
 		$this->db->where('id', $id);
-		$this->db->delete('post'); 
-		
-
+		$this->db->delete('post');
 	}
 }
 ?>

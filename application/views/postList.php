@@ -10,7 +10,7 @@
    </div>
    
    <div id="content_wrrap" class="box_border">
-   	<?php if(sizeof($posts)>0){ ?>	
+   	<?php if(sizeof($posts)>0) { ?>
    		
 		<div class="title_label">
 			<span>Posts</span>
@@ -23,10 +23,16 @@
 		<div id="accordion">
 			<?php foreach ($posts as $post): ?>
 		 		<h3><?php echo $post['title']; ?>
-		 			<small class="comm_time">By <?php echo $post['author']; ?> on [<?php echo $post['created']; ?>]</small>
+		 			<small class="comm_time">
+                        By <?php echo $post['author']; ?> on [<?php echo $post['created']; ?>]
+                    </small>
 		 		</h3>
    		 		<div class="comment_wrrap">
-        			<p><?php echo $post['lead']; ?>...<a href="<?php echo base_url(); ?>index.php/post/display/<?php echo $post['id'] ?>">More</a></p>
+        			<p><?php echo $post['lead']; ?>...
+                        <a href="<?php echo base_url(); ?>index.php/post/display/<?php echo $post['id'] ?>">
+                            More
+                        </a>
+                    </p>
     			</div>
 			<?php endforeach ?>
 		</div>

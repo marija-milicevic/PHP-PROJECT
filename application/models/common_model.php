@@ -1,56 +1,44 @@
 <?php
 
-class Common_model extends CI_Model
-{
-	public function __construct()
-	{
+class Common_model extends CI_Model {
+
+	public function __construct() {
 		parent::__construct();
 		$this->load->database();
 	}
 	
-	
-	protected function get($table, &$columns, &$options, &$uniqueFlags)
-	{
+	protected function get($table, &$columns, &$options, &$uniqueFlags) {
 		$options = $this->setDefault(array('sortDirection' => 'asc'), $options);
 		
 		// setting SQL where clause
-    	foreach($columns as $column)
-    	{
-        	if(isset($options[$column]))
-        	{
+    	foreach ($columns as $column) {
+        	if(isset($options[$column])) {
         		$this->db->where($column, $options[$column]);
 			}
     	}
 		
 		// setting SQL limit and offset clauses 
-    	if(isset($options['limit']) && isset($options['offset']))
-    	{
+    	if (isset($options['limit']) && isset($options['offset'])) {
     		$this->db->limit($options['limit'], $options['offset']);
-		}
-    	else if(isset($options['limit']))
-    	{
+		} else if(isset($options['limit'])) {
     		$this->db->limit($options['limit']);
 		}
 
 		// setting SQL order_by and sort_direction clauses
-    	if(isset($options['sortBy']))
-    	{
+    	if(isset($options['sortBy'])) {
     		$this->db->order_by($options['sortBy'], $options['sortDirection']);
 		}
 		
 		$query = $this->db->get($table);
 		
 		// no results -> return FALSE
-		if ($query->num_rows() == 0)
-		{
+		if ($query->num_rows() == 0) {
 			return FALSE;
 		}
 		
 		// return single row
-		foreach($uniqueFlags as $flag)
-		{
-			if (isset($options[$flag]))
-			{
+		foreach($uniqueFlags as $flag) {
+			if (isset($options[$flag])) {
 				return $query->row(0);
 			}
 		}
@@ -59,16 +47,12 @@ class Common_model extends CI_Model
 		return $query->result();
 	}
 
-	protected function insert($table, &$values)
-	{
+	protected function insert($table, &$values) {
 		$this->db->insert($table, $values);
 	}
 	
-	protected function setDefault($defaults, $options)
-	{
+	protected function setDefault($defaults, $options) {
 		return array_merge($defaults, $options);
 	}
 
-	
 }
-?>
